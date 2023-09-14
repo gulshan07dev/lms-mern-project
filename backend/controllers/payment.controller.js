@@ -39,8 +39,6 @@ export const buySubscription = async (req, res, next) => {
         user.subscription.id = subscription.id;
         user.subscription.status = subscription.status;
 
-        console.log(user);
-
         await user.save();
 
         res.status(200).json({
@@ -48,8 +46,7 @@ export const buySubscription = async (req, res, next) => {
             message: "Subscribed Successfully",
             subscription_id: subscription.id,
         });
-    } catch (e) {
-        console.log(e);
+    } catch (e) { 
         return next(new AppError(e.message, 500));
     }
 };
