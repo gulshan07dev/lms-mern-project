@@ -13,6 +13,9 @@ import {
 } from "react-icons/fa";
 
 export default function Sidebar() {
+  const dispatch = useDispatch();
+  const { isLoggedIn, role, data } = useSelector((state) => state.auth);
+
   function changeWidth() {
     const drawerSide = document.getElementsByClassName("drawer-side");
     drawerSide[0].style.width = "auto";
@@ -56,22 +59,29 @@ export default function Sidebar() {
             </Link>
           </li>
 
-          <li>
-            <Link to="/admin/dashboard" className="flex gap-3 items-center">
-              <FaUserCircle
-                size={18}
-                className="text-gray-500 dark:text-slate-100"
-              />{" "}
-              Admin DashBoard
-            </Link>
-          </li>
+          {role === "ADMIN" && (
+            <li>
+              <Link to="/admin/dashboard" className="flex gap-3 items-center">
+                <FaUserCircle
+                  size={18}
+                  className="text-gray-500 dark:text-slate-100"
+                />{" "}
+                Admin DashBoard
+              </Link>
+            </li>
+          )}
 
-          <li>
-            <Link to="/course/create" className="flex gap-3 items-center">
-              <FaPlus size={18} className="text-gray-500 dark:text-slate-100" />{" "}
-              Create new course
-            </Link>
-          </li>
+          {role === "ADMIN" && (
+            <li>
+              <Link to="/course/create" className="flex gap-3 items-center">
+                <FaPlus
+                  size={18}
+                  className="text-gray-500 dark:text-slate-100"
+                />{" "}
+                Create new course
+              </Link>
+            </li>
+          )}
 
           <li>
             <Link to="/courses" className="flex gap-3 items-center">
@@ -99,27 +109,30 @@ export default function Sidebar() {
               About Us
             </Link>
           </li>
-          <li className="absolute bottom-4 w-[90%]">
-            <div className="w-full flex items-center justify-center">
-              <button className="btn-primary px-4 py-1 font-semibold rounded-md w-full">
-                <Link to="/login">Login</Link>
-              </button>
-              <button className="btn-secondary px-4 py-1 font-semibold rounded-md w-full">
-                <Link to="/signup">Signup</Link>
-              </button>
-            </div>
-          </li>
 
-          <li className="absolute bottom-4 w-[90%]">
-            <div className="w-full flex md:flex-row flex-col gap-2 items-center justify-center">
-              <button className="btn-primary px-3.5 py-2.5 font-semibold rounded-md w-full">
-                <Link to="/user/profile">Profile</Link>
-              </button>
-              <button className="btn-secondary px-3.5 py-2.5 font-semibold rounded-md w-full">
-                <Link>Logout</Link>
-              </button>
-            </div>
-          </li>
+          {isLoggedIn ? (
+            <li className="absolute bottom-4 w-[90%]">
+              <div className="w-full flex md:flex-row flex-col gap-2 items-center justify-center">
+                <button className="btn-primary px-3.5 py-2.5 font-semibold rounded-md w-full">
+                  <Link to="/user/profile">Profile</Link>
+                </button>
+                <button className="btn-secondary px-3.5 py-2.5 font-semibold rounded-md w-full">
+                  <Link>Logout</Link>
+                </button>
+              </div>
+            </li>
+          ) : (
+            <li className="absolute bottom-4 w-[90%]">
+              <div className="w-full flex items-center justify-center">
+                <button className="btn-primary px-3.5 py-2.5 font-semibold rounded-md w-full">
+                  <Link to="/login">Login</Link>
+                </button>
+                <button className="btn-secondary px-3.5 py-2.5 font-semibold rounded-md w-full">
+                  <Link to="/signup">Signup</Link>
+                </button>
+              </div>
+            </li>
+          )}
         </ul>
       </div>
     </div>
