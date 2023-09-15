@@ -1,12 +1,15 @@
-import React from 'react';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
 
-function App() { 
-
+function App() {
   return (
     <>
-        <h1>LMS</h1>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
