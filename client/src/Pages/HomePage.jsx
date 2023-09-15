@@ -10,22 +10,22 @@ export default function HomePage() {
         <div className="md:w-1/2 w-full space-y-7">
           <h1 className="md:text-5xl text-6xl font-semibold text-gray-900 dark:text-gray-200">
             Find out best
-            <span className="text-yellow-500 font-bold">Online Courses</span>
+            <span className="text-yellow-500 font-bold font-open-sans">Online Courses</span>
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 ">
+          <p className="text-xl text-gray-500 dark:text-gray-300 font-inter">
             We have a large library of courses taught by highly skilled and
             qualified faculties at a very affordable cost.
           </p>
 
           <div className="space-x-6 flex">
             <Link to="/courses">
-              <button className="bg-yellow-400  text-gray-800 dark:text-gray-950 md:px-5 px-3 md:py-3 py-3 rounded-md font-semibold md:text-lg text-base cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+              <button className="bg-yellow-500 font-inter font-[400] text-slate-100 dark:text-gray-950 md:px-5 px-3 md:py-3 py-3 rounded-md  md:text-lg text-base cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
                 Explore courses
               </button>
             </Link>
 
             <Link to="/contact">
-              <button className="border border-yellow-500 text-gray-700 dark:text-white px-5 py-3 rounded-md font-semibold md:text-lg text-base cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+              <button className="border border-yellow-500 text-gray-700 dark:text-white px-5 py-3 rounded-md font-semibold md:text-lg text-base cursor-pointer hover:bg-yellow-500 transition-all ease-in-out duration-300">
                 Contact Us
               </button>
             </Link>

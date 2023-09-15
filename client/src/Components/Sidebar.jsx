@@ -50,14 +50,14 @@ export default function Sidebar({hideBar = false}) {
             htmlFor="my-drawer"
             className="drawer-overlay w-screen"
           ></label>
-          <ul className="menu  p-4 pt-7 h-[100%] md:w-[300px] w-screen bg-white dark:bg-[#29303ea3] backdrop-blur-[8px] text-gray-600 dark:text-slate-50 md:text-[17px] text-base font-[500] relative">
+          <ul className="menu  p-4 pt-7 h-[100%] md:w-[300px] w-screen bg-white dark:bg-[#29303ea3] backdrop-blur-[8px] text-gray-500 font-inter dark:text-slate-50 md:text-[17px] text-base font-[600] relative">
             <li className="w-fit absolute right-2 z-50 text-red-500">
               <button onClick={hideDrawer}>
                 <AiFillCloseCircle size={28} />
               </button>
             </li>
             <li>
-              <Link to="/" className="flex gap-3 items-center">
+              <Link to="/" className="flex gap-4 items-center">
                 <FaHome
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
@@ -68,7 +68,7 @@ export default function Sidebar({hideBar = false}) {
 
             {role === "ADMIN" && (
               <li>
-                <Link to="/admin/dashboard" className="flex gap-3 items-center">
+                <Link to="/admin/dashboard" className="flex gap-4 items-center">
                   <FaUserCircle
                     size={18}
                     className="text-gray-500 dark:text-slate-100"
@@ -80,7 +80,7 @@ export default function Sidebar({hideBar = false}) {
 
             {role === "ADMIN" && (
               <li>
-                <Link to="/course/create" className="flex gap-3 items-center">
+                <Link to="/course/create" className="flex gap-4 items-center">
                   <FaPlus
                     size={18}
                     className="text-gray-500 dark:text-slate-100"
@@ -91,7 +91,7 @@ export default function Sidebar({hideBar = false}) {
             )}
 
             <li>
-              <Link to="/courses" className="flex gap-3 items-center">
+              <Link to="/courses" className="flex gap-4 items-center">
                 <FaList
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
@@ -101,8 +101,8 @@ export default function Sidebar({hideBar = false}) {
             </li>
 
             <li>
-              <Link to="/contact" className="flex gap-3 items-center">
-                <FaInfoCircle
+              <Link to="/contact" className="flex gap-4 items-center">
+                <FaPhone
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
                 />{" "}
@@ -111,8 +111,8 @@ export default function Sidebar({hideBar = false}) {
             </li>
 
             <li>
-              <Link to="/about" className="flex gap-3 items-center">
-                <FaPhone
+              <Link to="/about" className="flex gap-4 items-center">
+                <FaInfoCircle
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
                 />{" "}

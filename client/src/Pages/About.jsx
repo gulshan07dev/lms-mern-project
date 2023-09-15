@@ -4,8 +4,8 @@ import CarouselSlide from "../Components/CarouselSlide";
 import { celebrities } from "../Constants/CelebrityData";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { useSelector } from "react-redux";import Layout from "../Layout/Layout";
+import "slick-carousel/slick/slick-theme.css"; 
+import Layout from "../Layout/Layout";
 
 function AboutUs() {
       const settings = {
@@ -22,10 +22,10 @@ function AboutUs() {
         {/* hero */}
         <div className="flex md:flex-row flex-col-reverse items-center justify-center md:gap-10 gap-7 w-full space-y-7">
           <div className="md:w-1/2 w-full space-y-7">
-            <h1 className="text-5xl text-yellow-500 font-semibold">
-              Affordable and quality education
+            <h1 className="text-5xl text-yellow-500 font-semibold font-inter">
+              Affordable and <span className="font-nunito-sans">quality education</span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-100">
+            <p className="text-xl text-gray-600 dark:text-gray-200 font-nunito-sans">
               Our goal is to provide the afoordable and quality education to the
               world. We are providing the platform for the aspiring teachers and
               students to share their skills, creativity and knowledge to each
@@ -50,9 +50,9 @@ function AboutUs() {
 
         <div className="w-[90vw] px-0 pt-7 mt-10 rounded-lg bg-[#dc85ffb4] dark:bg-[#393d4e93] backdrop-blur-lg md:h-[350px] h-[560px] overflow-hidden">
           <Slider {...settings} className="h-full">
-             {celebrities.map((details, index) => (
-                      <CarouselSlide details={details} key={index} />
-                 ))}
+            {celebrities.map((details, index) => (
+              <CarouselSlide details={details} key={index} />
+            ))}
           </Slider>
         </div>
       </section>
