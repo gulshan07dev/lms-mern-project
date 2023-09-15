@@ -13,6 +13,7 @@ function AboutUs() {
         screenY: true,
         slidesToShow: 1,
         slidesToScroll: 1,
+        lazyLoading: true
       };
       
   return (
@@ -47,7 +48,7 @@ function AboutUs() {
 
         {/* slider */}
 
-        <div className="w-[90vw] p-7 mt-10 rounded-lg bg-[#dc85ffb4] dark:bg-[#393d4e93] backdrop-blur-lg md:h-[350px] h-[500px] overflow-hidden">
+        <div className="w-[90vw] px-0 pt-7 mt-10 rounded-lg bg-[#dc85ffb4] dark:bg-[#393d4e93] backdrop-blur-lg md:h-[350px] h-[560px] overflow-hidden">
           <Slider {...settings} className="h-full">
              {celebrities.map((details, index) => (
                       <CarouselSlide details={details} key={index} />

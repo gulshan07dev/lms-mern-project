@@ -21,7 +21,28 @@ body {
 }
 
 .slick-slider button {
-   height: 50px;
-   width: 50px;
-   background-color: rgb(63, 53, 92); 
+  height: 50px;
+  width: 50px;
+  background-color: #3f355c;
+  z-index: 5;
+  border-radius: 100px;
+}
+
+.slick-slider button:hover {
+  background-color: #1414df;
+}
+
+.slick-slider button::before {
+  color: #ffffff;
+  font-size: 52px;
+  font-weight: 700;
+  box-shadow: 0px 3px 5px #0000003d;
+  border-radius: 100px;
+}
+ 
+.slick-slider .slick-next {
+  right: -12px;
+}
+.slick-slider .slick-prev {
+  left: -12px;
 }
