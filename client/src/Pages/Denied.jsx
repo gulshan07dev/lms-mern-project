@@ -5,7 +5,7 @@ import DeniedPng from '../assets/images/denied.png'
 function Denied() {
   const navigate = useNavigate();
   return (
-    <Layout hideBar={true}>
+    <Layout hideBar={true} hideNav={true}>
       <section className="min-h-screen pb-16 w-full flex md:flex-row flex-col-reverse md:justify-around bg-white  dark:bg-[#131212]">
         <div className=" flex flex-col justify-center items-center">
           <h1 className="text-9xl font-extrabold text-gray-700 dark:text-white tracking-widest">
