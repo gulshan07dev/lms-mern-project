@@ -1,11 +1,20 @@
 import React from "react";
 
-export default function InputBox({label, name, type, placeholder, value, onChange}) {
+export default function InputBox({
+  label,
+  name,
+  type,
+  placeholder,
+  value,
+  onChange = () => {},
+  disabled = false,
+  className = "",
+}) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className={`flex flex-col gap-2 ${className}`}>
       <label
         htmlFor={name}
-        className="font-[500] text-xl text-blue-600 dark:text-white font-lato"
+        className={`font-[500] text-xl text-blue-600 dark:text-white font-lato`}
       >
         {label}
       </label>
@@ -14,9 +23,10 @@ export default function InputBox({label, name, type, placeholder, value, onChang
         name={name}
         id={name}
         placeholder={placeholder}
-        className="bg-transparent text-lg font-inter px-3 py-2 border border-gray-300 text-gray-600 dark:text-slate-50"
+        className={`bg-transparent text-lg font-inter px-3 py-2 border border-gray-300 text-gray-600 dark:text-slate-50`}
         onChange={onChange}
-        value={value}
+        value={value || ''}
+        disabled={disabled}
       />
     </div>
   );

@@ -40,7 +40,19 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
         const res = await axiosInstance.get("/user/logout");
         toast.success(res?.data?.message, { id: loadingMessage });
-        console.log(res);
+        return res?.data
+    } catch (error) {
+        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        throw error;
+    }
+})
+
+// .....get user data.........
+export const getUserData = createAsyncThunk("/auth/user/me", async () => {
+    const loadingMessage = toast.loading("fetching profile...");
+    try {
+        const res = await axiosInstance.get("/user/me");
+        toast.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
         toast.error(error?.response?.data?.message, { id: loadingMessage });
@@ -82,6 +94,16 @@ const authSlice = createSlice({
             state.data = {};
             state.role = "";
             state.isLoggedIn = false;
+        })
+
+        // for get user data
+        builder.addCase(getUserData.fulfilled, (state, action) => {
+            localStorage.setItem("data", JSON.stringify(action?.payload?.user));
+            localStorage.setItem("role", action?.payload?.user?.role);
+            localStorage.setItem("isLoggedIn", true);
+            state.data = action?.payload?.user;
+            state.role = action?.payload?.user?.role;
+            state.isLoggedIn = true;
         })
     }
 })
