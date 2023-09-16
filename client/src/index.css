@@ -20,7 +20,7 @@ body {
   box-shadow: 0px 8px 24px #00000011;
 }
 
-.slick-slider button {
+.slick-slider .slick-arrow {
   height: 50px;
   width: 50px;
   background-color: #3f355c;
@@ -28,11 +28,11 @@ body {
   border-radius: 100px;
 }
 
-.slick-slider button:hover {
+.slick-slider .slick-arrow:hover {
   background-color: #1414df;
 }
 
-.slick-slider button::before {
+.slick-slider .slick-arrow::before {
   color: #ffffff;
   font-size: 52px;
   font-weight: 700;
@@ -45,4 +45,27 @@ body {
 }
 .slick-slider .slick-prev {
   left: -12px;
+}
+
+.slick-dots {
+  bottom: 7px;
+}
+
+.slick-dots li {
+  background-color: rgba(255, 255, 255, 0.356);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  transition: all cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.slick-dots button::before {
+  content: "";
+  display: none;
+}
+
+.slick-dots .slick-active {
+  background: #ffffff;
+  height: 22px;
+  width: 22px;
 }

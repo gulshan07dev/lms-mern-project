@@ -3,7 +3,7 @@ import { BsQuote } from "react-icons/bs";
 
 export default function CarouselSlide({ details }) {
   return (
-    <div className="md:w-auto w-full flex md:flex-row flex-col gap-7 mx-auto md:h-[350px] h-[560px] overflow-hidden">
+    <div className="md:w-auto w-full flex md:flex-row flex-col gap-7 mx-auto md:h-[350px] h-[550px] overflow-hidden">
       <img
         src={details.image}
         alt={`${details.title}Image`}

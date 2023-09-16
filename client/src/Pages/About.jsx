@@ -20,7 +20,7 @@ function AboutUs() {
       
   return (
     <Layout>
-      <section className="md:py-10 py-7 mb-10 text-white  md:px-16 px-6 min-h-[100vh]">
+      <section className="md:py-10 py-7 mb-10 text-white overflow-x-hidden  md:px-16 px-6 min-h-[100vh]">
         {/* hero */}
         <div className="flex md:flex-row flex-col-reverse items-center justify-center md:gap-10 gap-7 w-full space-y-7">
           <div className="md:w-1/2 w-full space-y-7">
@@ -50,7 +50,7 @@ function AboutUs() {
 
         {/* slider */}
 
-        <div className="w-[90vw] px-0 pt-7 mt-10 rounded-lg bg-[#dc85ffb4] dark:bg-[#393d4e93] backdrop-blur-lg md:h-[350px] h-[560px] overflow-hidden">
+        <div className="w-[90vw] px-0 pt-7 mt-10 rounded-lg bg-[#dc85ffb4] dark:bg-[#393d4e93] backdrop-blur-lg md:h-[350px] h-[550px] ">
           <Slider {...settings} className="h-full">
             {celebrities.map((details, index) => (
               <CarouselSlide details={details} key={index} />
