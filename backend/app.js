@@ -18,7 +18,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan('dev'));
 app.use(cors({ origin: [process.env.CLIENT_URL], credentials: true }));
-app.use(errorMiddleware);
 
 
 app.use('/api/v1/user', userRoutes); 
@@ -30,6 +29,7 @@ app.all('*', (req, res) => {
     res.status(404).send('OOPS!! 404 page not found');
 })
 
+app.use(errorMiddleware);
 
 // db init
 connectToDb();

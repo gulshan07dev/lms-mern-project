@@ -13,7 +13,9 @@ function AboutUs() {
         screenY: true,
         slidesToShow: 1,
         slidesToScroll: 1,
-        lazyLoading: true
+        lazyLoading: true,
+        autoplay: true,
+        speed: 500,
       };
       
   return (

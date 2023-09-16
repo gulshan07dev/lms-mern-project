@@ -71,7 +71,7 @@ userSchema.methods = {
         const resetToken = await crypto.randomBytes(20).toString('hex');
 
         this.forgotPasswordToken = await crypto
-            .createHash('sha256')  // Correct the algorithm name to 'sha256'
+            .createHash('sha256')  
             .update(resetToken)
             .digest('hex');
 
