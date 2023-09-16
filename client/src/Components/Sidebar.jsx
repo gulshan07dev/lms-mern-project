@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../Redux/Slices/AuthSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
@@ -12,9 +13,15 @@ import {
   FaPhone,
 } from "react-icons/fa";
 
-export default function Sidebar({hideBar = false}) {
+export default function Sidebar({ hideBar = false }) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoggedIn, role, data } = useSelector((state) => state.auth);
+
+  const onLogout = async function () {
+    await dispatch(logout());
+    navigate("/");
+  };
 
   function changeWidth() {
     const drawerSide = document.getElementsByClassName("drawer-side");
@@ -29,7 +36,7 @@ export default function Sidebar({hideBar = false}) {
     drawerSide[0].style.width = "0";
   }
 
-   if(!hideBar) {
+  if (!hideBar) {
     return (
       <div className="drawer absolute left-0 z-50 w-fit">
         <input className="drawer-toggle" id="my-drawer" type="checkbox" />
@@ -61,7 +68,7 @@ export default function Sidebar({hideBar = false}) {
                 <FaHome
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
-                />{" "}
+                />
                 Home
               </Link>
             </li>
@@ -72,7 +79,7 @@ export default function Sidebar({hideBar = false}) {
                   <FaUserCircle
                     size={18}
                     className="text-gray-500 dark:text-slate-100"
-                  />{" "}
+                  />
                   Admin DashBoard
                 </Link>
               </li>
@@ -84,7 +91,7 @@ export default function Sidebar({hideBar = false}) {
                   <FaPlus
                     size={18}
                     className="text-gray-500 dark:text-slate-100"
-                  />{" "}
+                  />
                   Create new course
                 </Link>
               </li>
@@ -95,7 +102,7 @@ export default function Sidebar({hideBar = false}) {
                 <FaList
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
-                />{" "}
+                />
                 All Courses
               </Link>
             </li>
@@ -105,7 +112,7 @@ export default function Sidebar({hideBar = false}) {
                 <FaPhone
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
-                />{" "}
+                />
                 Contact Us
               </Link>
             </li>
@@ -115,7 +122,7 @@ export default function Sidebar({hideBar = false}) {
                 <FaInfoCircle
                   size={18}
                   className="text-gray-500 dark:text-slate-100"
-                />{" "}
+                />
                 About Us
               </Link>
             </li>
@@ -126,7 +133,10 @@ export default function Sidebar({hideBar = false}) {
                   <button className="btn-primary px-3.5 py-2.5 font-semibold rounded-md w-full">
                     <Link to="/user/profile">Profile</Link>
                   </button>
-                  <button className="btn-secondary px-3.5 py-2.5 font-semibold rounded-md w-full">
+                  <button
+                    className="btn-secondary px-3.5 py-2.5 font-semibold rounded-md w-full"
+                    onClick={onLogout}
+                  >
                     <Link>Logout</Link>
                   </button>
                 </div>
@@ -147,5 +157,5 @@ export default function Sidebar({hideBar = false}) {
         </div>
       </div>
     );
-   }
+  }
 }
