@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { toast } from "react-hot-toast"; 
+import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { login } from "../Redux/Slices/AuthSlice";
-import InputBox from "../Components/auth/InputBox";
+import InputBox from "../Components/InputBox/InputBox";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [loginData, setLoginData] = useState({ 
+  const [loginData, setLoginData] = useState({
     email: "",
-    password: "", 
+    password: "",
   });
 
   function handleUserInput(e) {
@@ -21,24 +21,24 @@ export default function Login() {
       ...loginData,
       [name]: value,
     });
-  } 
+  }
 
   async function onLogin(event) {
     event.preventDefault();
-    if (!loginData.email || !loginData.password ) {
+    if (!loginData.email || !loginData.password) {
       toast.error("Please fill all the details");
       return;
-    } 
-    
-    const Data = {email: loginData.email, password: loginData.password}
+    }
+
+    const Data = { email: loginData.email, password: loginData.password };
 
     // dispatch create account action
     const response = await dispatch(login(Data));
     if (response?.payload?.success) {
-      setLoginData({ 
+      setLoginData({
         email: "",
-        password: "", 
-      }); 
+        password: "",
+      });
 
       navigate("/");
     }
@@ -55,7 +55,7 @@ export default function Login() {
         >
           <h1 className="text-center dark:text-purple-500 text-4xl font-bold font-inter">
             Login Page
-          </h1> 
+          </h1>
           {/* email */}
           <InputBox
             label={"Email"}
@@ -74,7 +74,7 @@ export default function Login() {
             onChange={handleUserInput}
             value={loginData.password}
           />
-          
+
           {/* submit btn */}
           <button
             type="submit"

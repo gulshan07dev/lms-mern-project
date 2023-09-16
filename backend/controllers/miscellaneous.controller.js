@@ -3,26 +3,24 @@ import sendEmail from '../utils/sendEmail.js';
 import userModel from '../models/user.model.js';
 
 const contactUs = async (req, res, next) => {
-    const { fullName, email, message, subject, orgName } = req.body;
+    const { name, email, message} = req.body;
 
-    if (!fullName || !email || !message) {
+    if (!name || !email || !message) {
         return next(new AppError("All fields are required", 400));
     }
 
     try {
-        // Only include orgName in the email message if it's provided
-        const emailMessage = `Name: ${fullName}\nEmail: ${email}\n${orgName ? `Organization: ${orgName}\n` : ''
-            }Message: ${message}`;
+        const emailMessage = `Name: ${name}\nEmail: ${email}\nMessage: ${message}`;
 
         // Send email to the organization
         await sendEmail(
             process.env.CONTACT_US_EMAIL,
-            subject,
+            "Contact Us",
             emailMessage,
         );
 
         // Send confirmation email to the user
-        const userMessage = `Hello ${fullName},\n\nThank you for contacting us! We have received your message and will get in touch with you soon.\n\nBest regards,\nThe LMS Skills Team 😊`;
+        const userMessage = `Hello ${name},\n\nThank you for contacting us! We have received your message and will get in touch with you soon.\n\nBest regards,\nThe LMS Team 😊`;
 
         await sendEmail(
             email,

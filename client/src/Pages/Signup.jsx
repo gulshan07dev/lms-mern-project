@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import { createAccount } from "../Redux/Slices/AuthSlice";
-import InputBox from "../Components/auth/InputBox";
+import InputBox from "../Components/InputBox/InputBox";
 
 export default function Signup() {
   const dispatch = useDispatch();
@@ -48,11 +48,7 @@ export default function Signup() {
 
   async function createNewAccount(event) {
     event.preventDefault();
-    if (
-      !signupData.email ||
-      !signupData.password ||
-      !signupData.fullName
-    ) {
+    if (!signupData.email || !signupData.password || !signupData.fullName) {
       toast.error("Please fill all the details");
       return;
     }
@@ -67,7 +63,6 @@ export default function Signup() {
       toast.error("Invalid email id");
       return;
     }
- 
 
     const formData = new FormData();
     formData.append("fullName", signupData.fullName);
@@ -76,7 +71,7 @@ export default function Signup() {
     formData.append("avatar", signupData.avatar);
 
     // dispatch create account action
-    const response = await dispatch(createAccount(formData)); 
+    const response = await dispatch(createAccount(formData));
     if (response?.payload?.success) {
       setSignupData({
         fullName: "",
@@ -85,7 +80,7 @@ export default function Signup() {
         avatar: "",
       });
       setPreviewImage("");
-      
+
       navigate("/");
     }
   }
@@ -135,7 +130,10 @@ export default function Signup() {
               htmlFor="image_uploads "
               className="font-[500] text-xl text-blue-600 dark:text-white font-lato"
             >
-              Avatar <span className="text-red-600 font-inter text-lg">{"("}Optional{")"}</span>
+              Avatar{" "}
+              <span className="text-red-600 font-inter text-lg">
+                {"("}Optional{")"}
+              </span>
             </label>
             <div className="flex gap-7 border border-gray-300 px-2 py-2">
               {previewImage ? (
