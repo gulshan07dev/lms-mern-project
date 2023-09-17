@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../../Redux/Slices/AuthSlice";
+import { getUserData, updateUserData } from "../../Redux/Slices/AuthSlice";
 import InputBox from "../../Components/InputBox/InputBox";
 import { FaUserCircle } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
@@ -10,8 +10,64 @@ export default function Profile() {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
 
+  const [userInput, setUserInput] = useState({
+    name: userData?.fullName || "",
+    avatar: null,
+    previewImage: null,
+    userId: null,
+  });
+  const avatarInputRef = useRef(null);
+  const [isChanged, setIschanged] = useState(false);
+
+  function handleImageUpload(e) {
+    e.preventDefault();
+    const uploadImage = e.target.files[0];
+    if (uploadImage) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(uploadImage);
+      fileReader.addEventListener("load", function () {
+        setUserInput({
+          ...userInput,
+          previewImage: this.result,
+          avatar: uploadImage,
+        });
+      });
+    }
+  }
+
+  async function onFormSubmit(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("fullName", userInput.name);
+    if (userInput.avatar) {
+      formData.append("avatar", userInput.avatar);
+    }
+    const data = { formData, id: userInput.userId };
+    const response = await dispatch(updateUserData(data));
+    if (response?.payload?.success) {
+      await dispatch(getUserData());
+    }
+    setIschanged(false)
+  }
+
   useEffect(() => {
-    dispatch(getUserData());
+    setIschanged(userInput.name !== userData?.fullName || userInput.avatar);
+  }, [userInput]);
+
+  useEffect(() => {
+    async function fetchUser() {
+      await dispatch(getUserData());
+    }
+    if (Object.keys(userData).length < 1) fetchUser();
+  }, []);
+
+  useEffect(() => {
+    setUserInput({
+      ...userInput,
+      name: userData?.fullName,
+      userId: userData?._id,
+    });
   }, []);
 
   return (
@@ -20,22 +76,46 @@ export default function Profile() {
         <form
           autoComplete="off"
           noValidate
-          className="flex flex-col dark:bg-base-100 relative gap-7 rounded-lg md:py-5 py-7 md:px-7 px-3 md:w-[750px] w-full shadow-custom dark:shadow-xl  "
+          onSubmit={onFormSubmit}
+          className="flex flex-col dark:bg-base-100 relative gap-7 rounded-lg md:py-10 py-7 md:px-7 px-3 md:w-[750px] w-full shadow-custom dark:shadow-xl  "
         >
           <div className="flex justify-center items-center">
-            <h1 className="text-center absolute left-6 text-violet-500 dark:text-purple-500 text-4xl font-bold font-inter after:content-[' ']  after:absolute after:-bottom-3.5 after:left-0 after:h-1.5 after:w-[60%] after:rounded-full after:bg-yellow-400 dark:after:bg-yellow-600">
+            <h1 className="text-center absolute left-6 md:top-auto top-5 text-violet-500 dark:text-purple-500 text-4xl font-bold font-inter after:content-[' ']  after:absolute after:-bottom-3.5 after:left-0 after:h-1.5 after:w-[60%] after:rounded-full after:bg-yellow-400 dark:after:bg-yellow-600">
               Profile
             </h1>
             {/* avatar */}
-            <div className="w-16 h-16 rounded-full overflow-hidden self-center">
-              {userData?.avatar?.secure_uel ? (
-                <img src={userData?.avatar?.secure_uel} alt="avatar" />
+            <div
+              className="w-16 h-16 rounded-full overflow-hidden self-center cursor-pointer"
+              onClick={() => avatarInputRef.current.click()}
+            >
+              {userData?.avatar?.secure_url || userInput.previewImage ? (
+                <img
+                  src={
+                    userInput.previewImage
+                      ? userInput.previewImage
+                      : userData?.avatar?.secure_url
+                  }
+                  alt="avatar"
+                  className="h-full w-full"
+                />
               ) : (
                 <FaUserCircle className="h-full w-full" />
               )}
+              <input
+                type="file"
+                accept=".png, .jpeg, .jpg"
+                className="hidden"
+                ref={avatarInputRef}
+                onChange={handleImageUpload}
+              />
             </div>
             {/* more options */}
-            <button type="button" className="absolute right-3 top-3 text-gray-500 dark:text-slate-50 font-inter font-[600]"><FiMoreVertical size={20} /></button>
+            <button
+              type="button"
+              className="absolute right-3 top-3 text-gray-500 dark:text-slate-50 font-inter font-[600]"
+            >
+              <FiMoreVertical size={20} />
+            </button>
           </div>
           <div className="w-full flex  flex-wrap gap-6">
             {/* name */}
@@ -44,7 +124,10 @@ export default function Profile() {
               name={"name"}
               type={"text"}
               placeholder={"Enter fullName"}
-              value={userData?.fullName || ""}
+              value={userInput.name}
+              onChange={(e) =>
+                setUserInput({ ...userInput, name: e.target.value })
+              }
               className="md:w-[48%] w-[100%]"
             />
 
@@ -75,6 +158,24 @@ export default function Profile() {
               className="md:w-[48%] w-[100%]"
               disabled={true}
             />
+          </div>
+          {/* submit button */}
+          <div className="w-full flex md:flex-row flex-col md:justify-between justify-center md:gap-0 gap-3">
+            <button
+              type="submit"
+              className="py-3.5  rounded-md bg-yellow-500 mt-3 text-white font-inter   md:w-[48%] w-full"
+              disabled={!isChanged}
+            >
+              Save Changes
+            </button>
+
+            {/* show cancel subscription btn if Active */}
+            <button
+              type="button"
+              className="py-3.5 rounded-md bg-[#ff2727] mt-3 text-white font-inter md:w-[48%] w-full"
+            >
+              Cancel Subscription
+            </button>
           </div>
         </form>
       </section>

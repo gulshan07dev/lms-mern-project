@@ -16,12 +16,12 @@ export default function TextArea({
       >
         {label}
       </label>
-      <textarea 
+      <textarea
         name={name}
         id={name}
-        rows={rows} 
+        rows={rows}
         placeholder={placeholder}
-        className="bg-transparent resize-none text-lg font-inter px-3 py-2 border border-gray-300 text-gray-600 dark:text-slate-50"
+        className="bg-transparent resize-none text-lg font-inter px-3 py-2 border border-gray-300 text-gray-600 dark:text-slate-50  focus:border-[#3b38dd]  dark:focus:border-[#fffc5d]"
         onChange={onChange}
         value={value}
       />

@@ -16,10 +16,16 @@ body {
   min-height: 100vh;
 }
 
+input:disabled, button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+ 
 .shadow-custom {
   box-shadow: 0px 8px 24px #00000011;
 }
 
+/* custom slider button */
 .slick-slider .slick-arrow {
   height: 50px;
   width: 50px;

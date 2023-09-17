@@ -5,7 +5,7 @@ import { axiosInstance } from '../../Helpers/axiosInstance';
 const initialState = {
     isLoggedIn: localStorage.getItem("isLoggedIn") || false,
     role: localStorage.getItem("role") || "",
-    data: localStorage.getItem("data") || {}
+    data: JSON.parse(localStorage.getItem("data")) || {}
 }
 
 // .....signup.........
@@ -52,6 +52,19 @@ export const getUserData = createAsyncThunk("/auth/user/me", async () => {
     const loadingMessage = toast.loading("fetching profile...");
     try {
         const res = await axiosInstance.get("/user/me");
+        toast.success(res?.data?.message, { id: loadingMessage });
+        return res?.data
+    } catch (error) {
+        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        throw error;
+    }
+})
+
+// .....update user data.........
+export const updateUserData = createAsyncThunk("/auth/user/me", async (data) => {
+    const loadingMessage = toast.loading("Updating changes...");
+    try {
+        const res = await axiosInstance.post(`/user/update/${data.id}`, data.formData);
         toast.success(res?.data?.message, { id: loadingMessage });
         return res?.data
     } catch (error) {
