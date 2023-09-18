@@ -12,7 +12,10 @@ export default function CourseDescription() {
   return (
     <Layout>
       <section className="min-h-[90vh] pt-12 px-4 lg:px-20 flex flex-col items-center justify-center text-gray-800 dark:text-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 py-10 relative">
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-10 py-10 relative"
+          onClick={() => navigate("/checkout")}
+        >
           <div className="lg:col-span-1 space-y-5">
             <img
               className="w-full h-auto lg:h-64 rounded-md shadow-md"
