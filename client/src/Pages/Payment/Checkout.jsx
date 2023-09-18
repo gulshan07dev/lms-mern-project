@@ -58,8 +58,7 @@ export default function Checkout() {
         await dispatch(verifyUserPayment(paymentDetails));
         !isPaymentVerified
           ? navigate("/checkout/success")
-          : navigate("/checkout/fail");
-        await dispatch(getUserData());
+          : navigate("/checkout/fail"); 
       },
     };
     const paymentObject = new window.Razorpay(options);
