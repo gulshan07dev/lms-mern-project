@@ -5,8 +5,11 @@ import InputBox from "../../Components/InputBox/InputBox";
 import { FaUserCircle } from "react-icons/fa";
 import { FiMoreVertical } from "react-icons/fi";
 import Layout from "../../Layout/Layout";
+import { useNavigate } from "react-router-dom";
+import { cancelCourseBundle } from "../../Redux/Slices/RazorpaySlice";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
 
@@ -49,6 +52,13 @@ export default function Profile() {
       await dispatch(getUserData());
     }
     setIschanged(false)
+  }
+
+  async function handleCancelSubscription() {
+    const res = await dispatch(cancelCourseBundle())
+    if(res?.payload?.success) {
+      await dispatch(getUserData());
+    }
   }
 
   useEffect(() => {
@@ -170,12 +180,15 @@ export default function Profile() {
             </button>
 
             {/* show cancel subscription btn if Active */}
-            <button
-              type="button"
-              className="py-3.5 rounded-md bg-[#ff2727] mt-3 text-white font-inter md:w-[48%] w-full"
-            >
-              Cancel Subscription
-            </button>
+            {userData?.subscription?.status === "active" && (
+              <button
+                type="button"
+                onClick={handleCancelSubscription}
+                className="py-3.5 rounded-md bg-[#f32e2e] mt-3 text-white font-inter md:w-[48%] w-full"
+              >
+                Cancel Subscription
+              </button>
+            )}
           </div>
         </form>
       </section>

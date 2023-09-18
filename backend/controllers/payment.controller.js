@@ -3,7 +3,7 @@ import userModel from "../models/user.model.js";
 import AppError from "../utils/error.utils.js";
 import { razorpay } from "../server.js";
 import crypto from 'crypto';
- 
+
 export const getRazorPayApiKey = async (req, res, next) => {
     try {
         res.status(200).json({
@@ -46,7 +46,7 @@ export const buySubscription = async (req, res, next) => {
             message: "Subscribed Successfully",
             subscription_id: subscription.id,
         });
-    } catch (e) { 
+    } catch (e) {
         return next(new AppError(e.message, 500));
     }
 };
@@ -92,31 +92,28 @@ export const verifySubscription = async (req, res, next) => {
 }
 
 export const cancelSubscription = async (req, res, next) => {
+    const { id } = req.user;
+
+    const user = await userModel.findById(id);
+
+    if (user.role === 'ADMIN') {
+        return next(
+            new AppError('Admin does not need to cannot cancel subscription', 400)
+        );
+    }
+
+    const subscriptionId = user.subscription.id;
+
     try {
-        const { id } = req.user;
-
-        const user = await userModel.findById(id);
-        if (!user) {
-            return next(new AppError('Unauthorised, please login', 500))
-        }
-
-        if (user.role === 'ADMIN') {
-            return next(new AppError('Admin cannot puchase a subscription', 500))
-        }
-
-        const subscriptionId = user.subscription.id;
-
         const subscription = await razorpay.subscriptions.cancel(
             subscriptionId
-        )
+        );
 
         user.subscription.status = subscription.status;
 
         await user.save();
-
-
-    } catch (e) { 
-        return next(new AppError(e.message, 500))
+    } catch (error) {
+        return next(new AppError(error.error.description, error.statusCode));
     }
 }
 
@@ -126,12 +123,12 @@ export const allPayments = async (req, res, next) => {
 
         const subscriptions = await razorpay.subscriptions.all({
             count: count || 10,
-        }); 
-        
+        });
+
         res.status(200).json({
             success: true,
             message: 'All Payments',
-            allPayments: subscriptions 
+            allPayments: subscriptions
         });
     } catch (e) {
         return next(new AppError(e.message, 500));

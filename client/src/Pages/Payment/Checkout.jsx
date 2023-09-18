@@ -55,10 +55,12 @@ export default function Checkout() {
 
         toast.success("Payment successful");
 
-        await dispatch(verifyUserPayment(paymentDetails));
-        !isPaymentVerified
-          ? navigate("/checkout/success")
-          : navigate("/checkout/fail"); 
+        const res = await dispatch(verifyUserPayment(paymentDetails));
+        if (res?.payload?.success) {
+          navigate("/Checkout/success");
+        } else {
+          navigate("/payment/fail");
+        }
       },
     };
     const paymentObject = new window.Razorpay(options);
