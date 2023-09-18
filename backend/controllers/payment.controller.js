@@ -9,7 +9,7 @@ export const getRazorPayApiKey = async (req, res, next) => {
         res.status(200).json({
             success: true,
             message: "Razorpay API Key",
-            Key: process.env.RAZORPAY_KEY_ID
+            key: process.env.RAZORPAY_KEY_ID
         })
     } catch (e) {
         return next(new AppError(e.message, 500))
