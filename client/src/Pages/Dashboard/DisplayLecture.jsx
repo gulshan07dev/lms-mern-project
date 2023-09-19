@@ -12,7 +12,6 @@ export default function DisplayLecture() {
   const dispatch = useDispatch();
   const { state } = useLocation();
   const { lectures } = useSelector((state) => state.lecture);
-  console.log(lectures);
   const { role } = useSelector((state) => state.auth);
 
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -70,7 +69,7 @@ export default function DisplayLecture() {
               </div>
             </div>
             {/* right section for lectures list */}
-            <div className="md:w-[48%] md:flex-row flex-col w-full md:h-full h-1/2 overflow-y-scroll">
+            <div className="md:w-[48%] pb-12 md:flex-row flex-col w-full md:h-full h-1/2 overflow-y-scroll">
               <ul className="w-full p-2  flex flex-col gap-5 shadow-sm">
                 <li className="font-semibold bg-slate-50 dark:bg-slate-100 p-3 rounded-md shadow-lg sticky top-0 text-xl text-[#2320f7] font-nunito-sans flex items-center justify-between">
                   <p>Lectures list</p>

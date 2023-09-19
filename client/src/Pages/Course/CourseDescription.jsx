@@ -9,6 +9,11 @@ export default function CourseDescription() {
 
   const { role, data } = useSelector((state) => state.auth);
 
+  useEffect(() => {
+    if(!state) {
+      navigate("/courses");
+    }
+  }, [])
   return (
     <Layout>
       <section className="min-h-[90vh] md:pt-12 pt-2 px-4 lg:px-20 flex flex-col   text-gray-800 dark:text-white">
