@@ -8,7 +8,6 @@ export default function CourseList() {
   const dispatch = useDispatch();
 
   const { coursesData } = useSelector((state) => state.course);
-  console.log(coursesData);
 
   async function fetchCourses() {
     await dispatch(getAllCourses());

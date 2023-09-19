@@ -35,8 +35,9 @@ export const addCourseLecture = createAsyncThunk("/courses/lecture/add", async (
 // .....delete course lecture for a specific course....
 export const deleteCourseLecture = createAsyncThunk("/courses/lecture/delete", async (data) => {
     const loadingId = toast.loading("Deleting Lecture...");
+    console.log(data);
     try {
-        const res = axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
+        const res = await axiosInstance.delete(`/courses?courseId=${data.courseId}&lectureId=${data.lectureId}`);
         toast.success("Lecture Deleted Successfully", { id: loadingId })
         return res?.data;
     } catch (error) {

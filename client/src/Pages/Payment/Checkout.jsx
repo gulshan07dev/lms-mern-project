@@ -77,7 +77,7 @@ export default function Checkout() {
     switch (userData?.subscription?.status) {
       case "active":
         // Navigate outside of the switch statement
-        navigate("/");
+        navigate("/courses");
         break;
 
       // if already created subscription, then use previous id for this
