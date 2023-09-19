@@ -11,6 +11,7 @@ export default function CreateCourse() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isCreatingCourse, setIsCreatingCourse] = useState(false);
   const [userInput, setUserInput] = useState({
     title: "",
     category: "",
@@ -58,6 +59,7 @@ export default function CreateCourse() {
       return;
     }
 
+    setIsCreatingCourse(true);
     const formData = new FormData();
     formData.append("title", userInput.title);
     formData.append("description", userInput.description);
@@ -76,6 +78,7 @@ export default function CreateCourse() {
         previewImage: "",
       });
     }
+    setIsCreatingCourse(false);
   }
 
   return (
@@ -162,9 +165,10 @@ export default function CreateCourse() {
           {/* submit btn */}
           <button
             type="submit"
-            className="mt-3 bg-yellow-500 text-white dark:text-base-200 hover:bg-yellow-300 transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
+            disabled={isCreatingCourse}
+            className="mt-3 bg-yellow-500 text-white dark:text-base-200  transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
           >
-            Create Course
+            {isCreatingCourse ? "Creating Course..." : "Create Course"}
           </button>
         </form>
       </section>

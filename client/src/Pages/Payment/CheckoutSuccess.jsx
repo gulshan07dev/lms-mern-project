@@ -28,7 +28,7 @@ export default function CheckoutSuccess() {
 
           <Link
             to="/"
-            className="bg-green-500 hover:bg-green-600 transition-all ease-in-out duration-300 w-full py-3 text-xl font-semibold text-white text-center rounded-bl-lg rounded-br-lg"
+            className="bg-green-500   transition-all ease-in-out duration-300 w-full py-3 text-xl font-semibold text-white text-center rounded-bl-lg rounded-br-lg"
           >
             Go to Dashboard
           </Link>

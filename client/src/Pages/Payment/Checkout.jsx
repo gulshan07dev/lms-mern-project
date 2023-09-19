@@ -125,7 +125,7 @@ export default function Checkout() {
 
               <button
                 type="submit"
-                className="bg-yellow-500 hover:bg-yellow-600 transition duration-300 w-full text-xl font-bold text-white py-2 rounded-bl-lg rounded-br-lg"
+                className="bg-yellow-500  transition duration-300 w-full text-xl font-bold text-white py-2 rounded-bl-lg rounded-br-lg"
               >
                 Buy now
               </button>

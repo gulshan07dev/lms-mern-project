@@ -28,7 +28,7 @@ export default function CheckoutFail() {
 
           <Link
             to="/checkout"
-            className="bg-red-500 hover:bg-red-600 transition-all ease-in-out duration-300 w-full py-3 text-xl font text-white semibold text-center rounded-bl-lg rounded-br-lg"
+            className="bg-red-500  transition-all ease-in-out duration-300 w-full py-3 text-xl font text-white semibold text-center rounded-bl-lg rounded-br-lg"
           >
             Try Again
           </Link>

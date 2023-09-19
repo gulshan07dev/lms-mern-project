@@ -19,13 +19,13 @@ export default function HomePage() {
 
           <div className="space-x-6 flex">
             <Link to="/courses">
-              <button className="bg-yellow-500 font-inter font-[400] text-slate-100 dark:text-gray-950 md:px-5 px-3 md:py-3 py-3 rounded-md  md:text-lg text-base cursor-pointer hover:bg-yellow-600 transition-all ease-in-out duration-300">
+              <button className="bg-yellow-500 font-inter font-[400] text-slate-100 dark:text-gray-950 md:px-5 px-3 md:py-3 py-3 rounded-md  md:text-lg text-base cursor-pointer transition-all ease-in-out duration-300">
                 Explore courses
               </button>
             </Link>
 
             <Link to="/contact">
-              <button className="border border-yellow-500 text-gray-700 dark:text-white px-5 py-3 rounded-md font-semibold md:text-lg text-base cursor-pointer hover:bg-yellow-500 transition-all ease-in-out duration-300">
+              <button className="border border-yellow-500 text-gray-700 dark:text-white px-5 py-3 rounded-md font-semibold md:text-lg text-base cursor-pointer  transition-all ease-in-out duration-300">
                 Contact Us
               </button>
             </Link>

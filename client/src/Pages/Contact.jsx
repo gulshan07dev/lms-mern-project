@@ -7,6 +7,7 @@ import TextArea from "../Components/InputBox/TextArea";
 import Layout from "../Layout/Layout";
 
 export default function Contact() {
+  const [isLoading, setIsLoading] = useState(false);
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -33,6 +34,7 @@ export default function Contact() {
       return;
     }
 
+    setIsLoading(true);
     const loadingMessage = toast.loading("sending message...");
     try {
       const res = await axiosInstance.post("/contact", userInput);
@@ -44,6 +46,8 @@ export default function Contact() {
       });
     } catch (error) {
       toast.error("message sending failed! try again", { id: loadingMessage });
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -89,9 +93,10 @@ export default function Contact() {
           {/* submit btn */}
           <button
             type="submit"
-            className="mt-2 bg-yellow-500 text-white dark:text-base-200 hover:bg-yellow-300 transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
+            disabled={isLoading}
+            className="mt-2 bg-yellow-500 text-white dark:text-base-200  transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
           >
-            Submit Form
+            {isLoading ? "Submiting Form..." : "Submit Form"}
           </button>
         </form>
       </section>

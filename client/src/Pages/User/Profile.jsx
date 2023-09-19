@@ -12,7 +12,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.data);
-
+  const [isUpdating, setIsUpdating] = useState(false);
   const [userInput, setUserInput] = useState({
     name: userData?.fullName || "",
     avatar: null,
@@ -39,6 +39,7 @@ export default function Profile() {
   }
 
   async function onFormSubmit(e) {
+    setIsUpdating(true);
     e.preventDefault();
 
     const formData = new FormData();
@@ -50,13 +51,14 @@ export default function Profile() {
     const response = await dispatch(updateUserData(data));
     if (response?.payload?.success) {
       await dispatch(getUserData());
+      setIschanged(false);
     }
-    setIschanged(false)
+    setIsUpdating(false);
   }
 
   async function handleCancelSubscription() {
-    const res = await dispatch(cancelCourseBundle())
-    if(res?.payload?.success) {
+    const res = await dispatch(cancelCourseBundle());
+    if (res?.payload?.success) {
       await dispatch(getUserData());
     }
   }
@@ -176,7 +178,7 @@ export default function Profile() {
               className="py-3.5  rounded-md bg-yellow-500 mt-3 text-white font-inter   md:w-[48%] w-full"
               disabled={!isChanged}
             >
-              Save Changes
+              {isUpdating ? "Saving Changes..." : "Save Changes"}
             </button>
 
             {/* show cancel subscription btn if Active */}

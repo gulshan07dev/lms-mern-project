@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/Slices/AuthSlice";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ import {
 export default function Sidebar({ hideBar = false }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
   const { isLoggedIn, role, data } = useSelector((state) => state.auth);
 
   const onLogout = async function () {
@@ -136,8 +137,9 @@ export default function Sidebar({ hideBar = false }) {
                   <button
                     className="btn-secondary px-3.5 py-2.5 font-semibold rounded-md w-full"
                     onClick={onLogout}
+                    disabled={isLoading}
                   >
-                    <Link>Logout</Link>
+                    <Link>{isLoading ? "Logout..." : "Logout"}</Link>
                   </button>
                 </div>
               </li>

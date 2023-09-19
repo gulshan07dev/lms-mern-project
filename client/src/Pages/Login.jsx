@@ -10,6 +10,7 @@ export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isLoading, setIsLoading] = useState(false);
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -30,6 +31,7 @@ export default function Login() {
       return;
     }
 
+    setIsLoading(true);
     const Data = { email: loginData.email, password: loginData.password };
 
     // dispatch create account action
@@ -39,9 +41,9 @@ export default function Login() {
         email: "",
         password: "",
       });
-
       navigate("/");
     }
+    setIsLoading(false);
   }
 
   return (
@@ -78,9 +80,10 @@ export default function Login() {
           {/* submit btn */}
           <button
             type="submit"
-            className="mt-2 bg-yellow-500 text-white dark:text-base-200 hover:bg-yellow-300 transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
+            className="mt-2 bg-yellow-500 text-white dark:text-base-200  transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
+            disabled={isLoading}
           >
-            Login
+            {isLoading ? "Logging..." : "Login"}
           </button>
 
           {/* link */}

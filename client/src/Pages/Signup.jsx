@@ -13,6 +13,7 @@ export default function Signup() {
 
   const [previewImage, setPreviewImage] = useState("");
 
+  const [isLoading, setIsLoading] = useState(false);
   const [signupData, setSignupData] = useState({
     fullName: "",
     email: "",
@@ -155,9 +156,10 @@ export default function Signup() {
           {/* submit btn */}
           <button
             type="submit"
+            disabled={isLoading}
             className="mt-2 bg-yellow-500 text-white dark:text-base-200 hover:bg-yellow-300 transition-all ease-in-out duration-300 rounded-md py-2 font-nunito-sans font-[500]  text-lg cursor-pointer"
           >
-            Create account
+            {isLoading ? "Creating account" : "Create account"}
           </button>
 
           {/* link */}
