@@ -29,6 +29,19 @@ button:hover {
   box-shadow: 0px 8px 24px #00000011;
 }
 
+::-webkit-scrollbar {
+  background: #9797e70c;
+  width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bae716; 
+}
+
+html.light  ::-webkit-scrollbar-thumb {
+  background: blue;
+}
+
 /* custom slider button */
 .slick-slider .slick-arrow {
   height: 50px;

@@ -11,14 +11,11 @@ export default function CourseDescription() {
 
   return (
     <Layout>
-      <section className="min-h-[90vh] pt-12 px-4 lg:px-20 flex flex-col items-center justify-center text-gray-800 dark:text-white">
-        <div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-10 py-10 relative"
-          onClick={() => navigate("/checkout")}
-        >
+      <section className="min-h-[90vh] md:pt-12 pt-2 px-4 lg:px-20 flex flex-col   text-gray-800 dark:text-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 py-10 relative">
           <div className="lg:col-span-1 space-y-5">
             <img
-              className="w-full h-auto lg:h-64 rounded-md shadow-md"
+              className="md:w-[87%] w-full h-auto lg:h-64 rounded-md shadow-md"
               alt="thumbnail"
               src={state?.thumbnail?.secure_url}
             />
@@ -61,14 +58,14 @@ export default function CourseDescription() {
                 onClick={() =>
                   navigate("/course/displaylectures", { state: { ...state } })
                 }
-                className="bg-orange-500 dark:bg-orange-600 text-white text-lg rounded-md font-[500] px-6 py-3 w-full hover:bg-yellow-400 transition-all ease-in-out duration-300"
+                className="bg-orange-500 dark:bg-orange-600 text-white text-xl rounded-md font-bold px-5 py-3 w-full   transition-all ease-in-out duration-300"
               >
                 Watch lectures
               </button>
             ) : (
               <button
                 onClick={() => navigate("/checkout")}
-                className="bg-yellow-500 text-white text-lg font-inter rounded-md font-[500] px-6 py-3 w-full hover:bg-yellow-400 transition-all ease-in-out duration-300"
+                className="bg-orange-500 dark:bg-orange-600 text-white text-xl rounded-md font-bold px-5 py-3 w-full   transition-all ease-in-out duration-300"
               >
                 Subscribe
               </button>

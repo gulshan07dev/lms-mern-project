@@ -58,7 +58,7 @@ export default function Sidebar({ hideBar = false }) {
             htmlFor="my-drawer"
             className="drawer-overlay w-screen"
           ></label>
-          <ul className="menu  p-4 pt-7 h-[100%] md:w-[300px] w-screen bg-white dark:bg-[#29303ea3] backdrop-blur-[8px] text-gray-500 font-inter dark:text-slate-50 md:text-[17px] text-base font-[600] relative">
+          <ul className="menu  p-4 pt-7 h-[100%] min-w-[250px] max-w-[350px]  bg-white dark:bg-[#29303ea3] backdrop-blur-[8px] text-gray-500 font-inter dark:text-slate-50 md:text-[17px] text-base font-[600] relative">
             <li className="w-fit absolute right-2 z-50 text-red-500">
               <button onClick={hideDrawer}>
                 <AiFillCloseCircle size={28} />
