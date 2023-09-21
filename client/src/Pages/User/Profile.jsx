@@ -176,7 +176,7 @@ export default function Profile() {
             <button
               type="submit"
               className="py-3.5  rounded-md bg-yellow-500 mt-3 text-white font-inter   md:w-[48%] w-full"
-              disabled={!isChanged}
+              disabled={!isChanged || isUpdating}
             >
               {isUpdating ? "Saving Changes..." : "Save Changes"}
             </button>

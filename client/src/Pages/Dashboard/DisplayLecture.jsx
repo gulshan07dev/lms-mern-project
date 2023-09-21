@@ -59,7 +59,7 @@ export default function DisplayLecture() {
                     </span>
                     {lectures && lectures?.[currentVideo]?.title}
                   </h1>
-                  <p className="text-[16.5px] text-gray-700 font-[500] dark:text-slate-300 font-lato">
+                  <p className="text-[16.5px] pb-12 text-gray-700 font-[500] dark:text-slate-300 font-lato">
                     <span className="text-blue-500 dark:text-yellow-500 font-inter font-semibold text-lg">
                       Description:{" "}
                     </span>

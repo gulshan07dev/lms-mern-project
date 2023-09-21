@@ -16,7 +16,8 @@ body {
   min-height: 100vh;
 }
 
-input:disabled, button:disabled {
+input:disabled,
+button:disabled {
   opacity: 0.7;
   cursor: not-allowed;
 }
@@ -24,22 +25,31 @@ input:disabled, button:disabled {
 button:hover {
   opacity: 0.7;
 }
- 
+
 .shadow-custom {
   box-shadow: 0px 8px 24px #00000011;
 }
 
 ::-webkit-scrollbar {
   background: #9797e70c;
-  width: 7px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #bae716; 
+  background: #bae716c4;
+  transition: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-html.light  ::-webkit-scrollbar-thumb {
-  background: blue;
+::-webkit-scrollbar-thumb:hover {
+  background: #bae716;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #0000ff85;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #0000ff;
 }
 
 /* custom slider button */
@@ -62,10 +72,11 @@ html.light  ::-webkit-scrollbar-thumb {
   box-shadow: 0px 3px 5px #0000003d;
   border-radius: 100px;
 }
- 
+
 .slick-slider .slick-next {
   right: -12px;
 }
+
 .slick-slider .slick-prev {
   left: -12px;
 }

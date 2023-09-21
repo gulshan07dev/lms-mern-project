@@ -99,11 +99,8 @@ export default function AddLecture() {
           <div className="w-full flex md:flex-row md:justify-between justify-center flex-col md:gap-0 gap-5">
             <div className="md:w-[48%] w-full flex flex-col gap-5">
               {/* lecture video */}
-              <div
-                className="border border-gray-300 h-[200px] flex justify-center cursor-pointer"
-                onClick={() => videoRef.current.click()}
-              >
-                {userInput.videoSrc ? (
+              <div className="border border-gray-300 h-[200px] flex justify-center cursor-pointer">
+                {userInput.videoSrc && (
                   <video
                     muted
                     src={userInput.videoSrc}
@@ -111,28 +108,32 @@ export default function AddLecture() {
                     controlsList="nodownload nofullscreen"
                     disablePictureInPicture
                     className="object-fill w-full"
-                    onClick={() => videoRef.current.click()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      videoRef.current.click();
+                    }}
                   ></video>
-                ) : (
-                  <div className="h-full w-full flex items-center justify-center cursor-pointer">
-                    <label
-                      className="font-semibold text-cl cursor-pointer"
-                      htmlFor="lecture"
-                    >
-                      Choose your video
-                    </label>
-                    <input
-                      type="file"
-                      className="hidden"
-                      id="lecture"
-                      ref={videoRef}
-                      name="lecture"
-                      onChange={handleVideo}
-                      accept="video/mp4, video/x-mp4, video/*"
-                    />
-                  </div>
                 )}
+                {!userInput.videoSrc && (
+                  <label
+                    className="font-[500] text-xl h-full w-full flex justify-center items-center cursor-pointer font-lato"
+                    htmlFor="lecture"
+                  >
+                    Choose Your Video
+                  </label>
+                )}
+                <input
+                  type="file"
+                  className="hidden"
+                  id="lecture"
+                  ref={videoRef}
+                  name="lecture"
+                  onChange={handleVideo}
+                  accept="video/mp4, video/x-mp4, video/*"
+                />
               </div>
+            </div>
+            <div className="md:w-[48%] w-full flex flex-col gap-5">
               {/* title */}
               <InputBox
                 label={"Title"}
@@ -142,13 +143,11 @@ export default function AddLecture() {
                 onChange={handleInputChange}
                 value={userInput.title}
               />
-            </div>
-            <div className="md:w-[48%] w-full flex flex-col gap-5">
               {/* description */}
               <TextArea
                 label={"Description"}
                 name={"description"}
-                rows={8}
+                rows={5}
                 type={"text"}
                 placeholder={"Enter Lecture Description"}
                 onChange={handleInputChange}
