@@ -51,10 +51,10 @@ export const getPaymentRecord = createAsyncThunk("/payments/record", async () =>
     const loadingId = toast.loading("Getting the payment records");
     try {
         const response = await axiosInstance.get("/payments?count=100");
-        toast.success(response?.data?.message);
+        toast.success(response?.data?.message, {id: loadingId});
         return response?.data;
     } catch (error) {
-        toast.error("Operation failed");
+        toast.error("Operation failed", {id: loadingId});
         throw error;
     }
 });
