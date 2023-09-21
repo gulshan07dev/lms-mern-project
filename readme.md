@@ -4,7 +4,7 @@
 
 this is a lms project, that i have build while learning full stack development with my mentor. in this project i have build from scratch lots of feature like authentication, user management, course management, lecture management, lecture dashboard & admin dashboard and more...
 
-![LMS Skills](https://res.cloudinary.com/dhwbyshmo/image/upload/v1692957514/Learning-Management-System/home-page_bokonr.png)
+![LMS](https://res.cloudinary.com/dhwbyshmo/image/upload/v1695283699/project%20images/lms-home.png)
 
 ## Project Structure
 
@@ -47,11 +47,10 @@ LMS-Project/
 │   ├── src/
 │   │   ├── assests/
 │   │   ├── components/
-│   │   ├── helper/
+│   │   ├── helpers/
 │   │   ├── layout/
 │   │   ├── pages/
-│   │   ├── Redux/
-│   │   ├── utils/
+│   │   ├── Redux/ 
 │   │   ├── App.jsx/
 │   │   ├── index.css/
 │   │   ├── main.jsx/
@@ -62,7 +61,7 @@ LMS-Project/
 │   ├── index.html
 │   ├── package.json
 │   ├── README.md
-│
+│   ├── ...
 └──
 ```
 
@@ -75,14 +74,6 @@ LMS-Project/
 - 📝 **Lecture Management**: Admin can add, edit, and delete lectures within courses.
 - 🔒 **Subscription**: Users can enroll in courses by purchasing a 1-year subscription.
 - 🎥 **Lecture Dashboard**: Display course lectures, play videos, and view lecture descriptions.
-
-## Demo Video
-
-[![Watch Demo Video](https://res.cloudinary.com/dhwbyshmo/image/upload/v1692957514/Learning-Management-System/home-page_bokonr.png)](https://youtu.be/fqvEfYvxSvY?si=o2hfKbfZxd42Bz8O)
-
-Click the image above to watch the demo video.
-
----
 
 ## API Endpoints
 
@@ -140,11 +131,9 @@ Click the image above to watch the demo video.
 
 - **React :** `for creating ui`
 - **Tailwind & CSS :** `for styling the element`
-- **React-Icons :** `for icons`
-- **Material-UI :**
+- **React-Icons :** `for icons` 
 - **React-Router :** `for make the different pages`
-- **React-Slick :** `for create slider`
-- **Typewriter-Effect :**
+- **React-Slick :** `for create slider` 
 - **React-Toastify :** `for showing small small toast`
 - **React-Modal :** `for creating menu bar`
 - **React-Redux :** `for use redux with react`
@@ -160,8 +149,8 @@ Follow these steps to set up the project on your local machine:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/gulshan07dev/LMS_project-Learning-Management-System-.git
-   cd LMS-Project
+   git clone https://github.com/gulshan07dev/lms-mern-project.git
+   cd LMS
    ```
 
 2. Set up the backend:
@@ -177,7 +166,7 @@ Follow these steps to set up the project on your local machine:
    - Start the client development server: `npm run dev`
 
 4. Access the application:
-   - Open your browser and visit: `http://localhost:3000`
+   - Open your browser and visit: `http://localhost:5173`
 
 ---
 
