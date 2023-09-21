@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import Layout from "../../Layout/Layout";
-import {getAllCourses, deleteCourse} from "../../Redux/Slices/CourseSlice"
+import { getAllCourses, deleteCourse } from "../../Redux/Slices/CourseSlice";
 import { getPaymentRecord } from "../../Redux/Slices/RazorpaySlice";
 import { getStatsData } from "../../Redux/Slices/StatSlice";
 ChartJS.register(
@@ -32,16 +32,14 @@ ChartJS.register(
 );
 
 export default function AdminDashboard() {
-   const dispatch = useDispatch();
-   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-   const { allUsersCount, subscribedCount } = useSelector(
-     (state) => state.stat
-   );
+  const { allUsersCount, subscribedCount } = useSelector((state) => state.stat);
 
-   const { allPayments, monthlySalesRecord } = useSelector(
-     (state) => state.razorpay
-   );
+  const { allPayments, monthlySalesRecord } = useSelector(
+    (state) => state.razorpay
+  );
 
   const userData = {
     labels: ["Registered User", "Enrolled User"],
@@ -88,7 +86,7 @@ export default function AdminDashboard() {
 
   async function onCourseDelete(id) {
     if (window.confirm("Are you sure you want to delete the course ? ")) {
-      const res = await dispatch(deleteCourse(id)); 
+      const res = await dispatch(deleteCourse(id));
       if (res?.payload?.success) {
         await dispatch(getAllCourses());
       }
@@ -128,18 +126,29 @@ export default function AdminDashboard() {
               </div>
 
               {/* card for user data */}
-              <div className="grid grid-cols-2 gap-5">
-                <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                  <div className="flex flex-col items-center">
-                    <p className="font-semibold">Registered Users</p>
-                    <h3 className="text-4xl font-bold">{allUsersCount}</h3>
+              <div className="grid grid-cols-2 gap-5 w-full">
+                {/* Registered user */}
+                <div className="flex  items-center relative h-32 justify-between p-5 gap-5 rounded-md shadow-md">
+                  <div className="flex flex-col items-center mt-3 justify-center">
+                    <p className="font-semibold text-gray-700 dark:text-white md:static absolute top-3 left-3">
+                      Registered Users
+                    </p>
+                    <h3 className="md:text-4xl text-xl font-inter font-bold">
+                      {allUsersCount}
+                    </h3>
                   </div>
                   <FaUsers className="text-yellow-500 text-5xl" />
                 </div>
-                <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                  <div className="flex flex-col items-center">
-                    <p className="font-semibold">Subscribed Users</p>
-                    <h3 className="text-4xl font-bold">{subscribedCount}</h3>
+
+                {/* subscribedCount */}
+                <div className="flex  items-center relative h-32 justify-between p-5 gap-5 rounded-md shadow-md">
+                  <div className="flex flex-col items-center mt-3 justify-center">
+                    <p className="font-semibold text-gray-700 dark:text-white md:static absolute top-3 left-3">
+                      Subscribed Users
+                    </p>
+                    <h3 className="md:text-4xl text-xl font-inter font-bold">
+                      {subscribedCount}
+                    </h3>
                   </div>
                   <FaUsers className="text-green-500 text-5xl" />
                 </div>
@@ -160,18 +169,27 @@ export default function AdminDashboard() {
               </div>
 
               {/* card for user data */}
-              <div className="grid grid-cols-2 gap-5">
-                <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                  <div className="flex flex-col items-center">
-                    <p className="font-semibold">Subscription Count</p>
-                    <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
+              <div className="grid grid-cols-2 gap-5 w-full">
+                {/* Subscription count */}
+                <div className="flex  items-center relative h-32 justify-between p-5 gap-5 rounded-md shadow-md">
+                  <div className="flex flex-col items-center mt-3 justify-center">
+                    <p className="font-semibold text-gray-700 dark:text-white md:static absolute top-3 left-3">
+                      Subscription Count
+                    </p>
+                    <h3 className="md:text-4xl text-xl font-inter font-bold">
+                      {allPayments?.count}
+                    </h3>
                   </div>
                   <FcSalesPerformance className="text-yellow-500 text-5xl" />
                 </div>
-                <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                  <div className="flex flex-col items-center">
-                    <p className="font-semibold">Total Revenue</p>
-                    <h3 className="text-4xl font-bold">
+
+                {/* total revenue */}
+                <div className="flex  items-center relative h-32 justify-center p-5 gap-5 rounded-md shadow-md">
+                  <div className="flex flex-col items-center mt-3 justify-center">
+                    <p className="font-semibold text-gray-700 dark:text-white md:static absolute top-3 left-3">
+                      Total Revenue
+                    </p>
+                    <h3 className="md:text-4xl text-xl font-inter font-bold">
                       {allPayments?.count * 499}
                     </h3>
                   </div>
@@ -261,4 +279,4 @@ export default function AdminDashboard() {
       </section>
     </Layout>
   );
-} 
+}
