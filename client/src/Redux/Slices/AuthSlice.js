@@ -73,6 +73,53 @@ export const updateUserData = createAsyncThunk("/auth/user/me", async (data) => 
     }
 })
 
+// .....change user password.......
+export const changePassword = createAsyncThunk(
+    "/auth/user/changePassword",
+    async (userPassword) => {
+        const loadingMessage = toast.loading("Changing password...");
+        try {
+            const res = await axiosInstance.post("/user/change-password", userPassword);
+            toast.success(res?.data?.message, { id: loadingMessage });
+            return res?.data
+        } catch (error) {
+            toast.error(error?.response?.data?.message, { id: loadingMessage });
+            throw error;
+        }
+    }
+);
+
+// .....forget user password.....
+export const forgetPassword = createAsyncThunk(
+    "auth/user/forgetPassword",
+    async (email) => {
+        const loadingMessage = toast.loading("Please Wait! sending email...");
+        try {
+            const res = await axiosInstance.post("/user/reset", email);
+            toast.success(res?.data?.message, { id: loadingMessage });
+            return res?.data
+        } catch (error) {
+            toast.error(error?.response?.data?.message, { id: loadingMessage });
+            throw error;
+        }
+    }
+);
+
+
+// .......reset the user password......
+export const resetPassword = createAsyncThunk("/user/reset", async (data) => {
+    const loadingMessage = toast.loading("Please Wait! reseting your password...");
+    try {
+        const res = await axiosInstance.post(`/user/reset/${data.resetToken}`,
+            { password: data.password }
+        );
+        toast.success(res?.data?.message, { id: loadingMessage });
+        return res?.data
+    } catch (error) {
+        toast.error(error?.response?.data?.message, { id: loadingMessage });
+        throw error;
+    }
+});
 
 const authSlice = createSlice({
     name: "auth",
