@@ -28,8 +28,8 @@ export default function DisplayLecture() {
     dispatch(getCourseLectures(state._id));
   }, []);
   return (
-    <Layout hideFooter={true}>
-      <section className="flex flex-col gap-6 items-center md:py-8 py-0 px-0 md:h-[calc(100vh-72px)] h-[calc(100vh-65px)] overflow-y-scroll">
+    <Layout hideFooter={true} hideNav={true} hideBar={true}>
+      <section className="flex flex-col gap-6 items-center md:py-8 py-0 px-0 h-screen overflow-y-scroll">
         <div className="flex flex-col dark:bg-base-100 relative md:gap-12 gap-5 rounded-lg md:py-10 md:pt-3 py-0 pt-3 md:px-7 px-0 md:w-[780px] w-full h-full overflow-y-hidden shadow-custom dark:shadow-xl">
           <h1 className="text-center relative md:px-0 px-3 w-fit dark:text-purple-500 md:text-2xl text-lg font-bold font-inter after:content-[' ']  after:absolute after:-bottom-2  md:after:left-0 after:left-3 after:h-[3px] after:w-[60%] after:rounded-full after:bg-yellow-400 dark:after:bg-yellow-600">
             Course:{" "}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserData, updateUserData } from "../../Redux/Slices/AuthSlice";
 import InputBox from "../../Components/InputBox/InputBox";
 import { FaUserCircle } from "react-icons/fa";
+import { IoIosLock, IoIosRefresh } from "react-icons/io";
 import { FiMoreVertical } from "react-icons/fi";
 import Layout from "../../Layout/Layout";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ export default function Profile() {
   });
   const avatarInputRef = useRef(null);
   const [isChanged, setIschanged] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   function handleImageUpload(e) {
     e.preventDefault();
@@ -122,13 +124,37 @@ export default function Profile() {
               />
             </div>
             {/* more options */}
-            <button
-              type="button"
-              className="absolute right-3 top-3 text-gray-500 dark:text-slate-50 font-inter font-[600]"
-            >
-              <FiMoreVertical size={20} />
-            </button>
+            <div className="absolute right-3 top-3">
+              <button
+                type="button"
+                className="absolute right-0 text-gray-500 dark:text-slate-50 font-inter font-[600]"
+                onClick={() => setIsDialogOpen((prev) => !prev)}
+              >
+                <FiMoreVertical size={20} />
+              </button>
+
+              <dialog
+                open={isDialogOpen}
+                className="bg-white dark:bg-base-300 transition-all duration-500 border-[1px] border-gray-200 dark:border-gray-500 rounded-s-xl rounded-ee-xl py-5 shadow-lg w-fit relative right-0 top-7"
+              >
+                <div className="w-full flex flex-col gap-2 items-start">
+                  <button
+                    className="text-gray-700 w-full flex items-center gap-2 dark:text-white px-3 pb-2 border-b-[1px] border-gray-300"
+                    onClick={() => navigate("/change-password")}
+                  >
+                    <IoIosLock /> Change password
+                  </button>
+                  <button
+                    className="text-[#ff1414] dark:text-red-300 px-3 w-full flex items-center gap-2"
+                    onClick={() => navigate(`reset/${userData._id}`)}
+                  >
+                    <IoIosRefresh /> Reset password
+                  </button>
+                </div>
+              </dialog>
+            </div>
           </div>
+
           <div className="w-full flex  flex-wrap gap-6">
             {/* name */}
             <InputBox

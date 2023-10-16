@@ -6,6 +6,7 @@ import AboutUs from "./Pages/About";
 import NotFound from "./Pages/NotFound";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
+import ChangePassword from "./Pages/Password/ChangePassword"
 import CourseList from "./Pages/Course/CourseList";
 import Contact from "./Pages/Contact";
 import Denied from "./Pages/Denied";
@@ -44,6 +45,7 @@ function App() {
 
         <Route element={<RequireAuth allowedRoles={["USER", "ADMIN"]} />}>
           <Route path="/user/profile" element={<Profile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/fail" element={<CheckoutFail />} />
