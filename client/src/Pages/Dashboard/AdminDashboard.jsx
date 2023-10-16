@@ -37,9 +37,10 @@ export default function AdminDashboard() {
 
   const { allUsersCount, subscribedCount } = useSelector((state) => state.stat);
 
-  const { allPayments, monthlySalesRecord } = useSelector(
+  const { allPayments } = useSelector(
     (state) => state.razorpay
   );
+  const monthlySalesRecord = [1, 3, 7, 8, 10, 0, 5]
 
   const userData = {
     labels: ["Registered User", "Enrolled User"],
