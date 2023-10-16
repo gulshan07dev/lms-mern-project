@@ -17,7 +17,7 @@ function Denied() {
           <button className="mt-5">
             <a className="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-yellow-500 focus:outline-none focus:ring">
               <span
-                onClick={() => navigate(-1)}
+                onClick={() => navigate(-2)}
                 className="relative block px-8 py-3 bg-[#1A2238] text-white border border-current"
               >
                 Go Back
