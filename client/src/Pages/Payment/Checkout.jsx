@@ -57,9 +57,9 @@ export default function Checkout() {
 
         const res = await dispatch(verifyUserPayment(paymentDetails));
         if (res?.payload?.success) {
-          navigate("/Checkout/success");
+          navigate("/checkout/success");
         } else {
-          navigate("/payment/fail");
+          navigate("/checkout/fail");
         }
       },
     };
