@@ -7,6 +7,8 @@ import NotFound from "./Pages/NotFound";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import ChangePassword from "./Pages/Password/ChangePassword"
+import ForgotPassword from "./Pages/Password/ForgotPassword";
+import ResetPassword from "./Pages/Password/ResetPassword";
 import CourseList from "./Pages/Course/CourseList";
 import Contact from "./Pages/Contact";
 import Denied from "./Pages/Denied";
@@ -33,6 +35,14 @@ function App() {
 
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/user/profile/reset-password"
+          element={<ForgotPassword />}
+        />
+        <Route
+          path="/user/profile/reset-password/:resetToken"
+          element={<ResetPassword />}
+        />
 
         <Route path="/courses" element={<CourseList />} />
         <Route path="/courses/description" element={<CourseDescription />} />
@@ -45,7 +55,10 @@ function App() {
 
         <Route element={<RequireAuth allowedRoles={["USER", "ADMIN"]} />}>
           <Route path="/user/profile" element={<Profile />} />
-          <Route path="/change-password" element={<ChangePassword />} />
+          <Route
+            path="/user/profile/change-password"
+            element={<ChangePassword />}
+          />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/fail" element={<CheckoutFail />} />

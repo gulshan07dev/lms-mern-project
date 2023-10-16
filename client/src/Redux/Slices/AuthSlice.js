@@ -95,7 +95,7 @@ export const forgetPassword = createAsyncThunk(
     async (email) => {
         const loadingMessage = toast.loading("Please Wait! sending email...");
         try {
-            const res = await axiosInstance.post("/user/reset", email);
+            const res = await axiosInstance.post("/user/reset", {email});
             toast.success(res?.data?.message, { id: loadingMessage });
             return res?.data
         } catch (error) {

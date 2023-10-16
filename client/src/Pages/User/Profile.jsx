@@ -140,13 +140,13 @@ export default function Profile() {
                 <div className="w-full flex flex-col gap-2 items-start">
                   <button
                     className="text-gray-700 w-full flex items-center gap-2 dark:text-white px-3 pb-2 border-b-[1px] border-gray-300"
-                    onClick={() => navigate("/change-password")}
+                    onClick={() => navigate("change-password")}
                   >
                     <IoIosLock /> Change password
                   </button>
                   <button
                     className="text-[#ff1414] dark:text-red-300 px-3 w-full flex items-center gap-2"
-                    onClick={() => navigate(`reset/${userData._id}`)}
+                    onClick={() => navigate("reset-password")}
                   >
                     <IoIosRefresh /> Reset password
                   </button>
