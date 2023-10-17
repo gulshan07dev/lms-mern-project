@@ -65,6 +65,12 @@ LMS-Project/
 └──
 ```
 
+## Demo Video
+
+[![Watch Demo Video](https://res.cloudinary.com/dhwbyshmo/image/upload/v1697537153/project%20images/lms-admin-dashboard.png)](https://www.linkedin.com/feed/update/urn:li:activity:7119641188646727681)
+
+Click the image above to watch the demo video.
+
 
 ## Features
 
@@ -131,11 +137,11 @@ LMS-Project/
 
 - **React :** `for creating ui`
 - **Tailwind & CSS :** `for styling the element`
+- **DaisyUi :** `for creating beautiful drawer`
 - **React-Icons :** `for icons` 
 - **React-Router :** `for make the different pages`
 - **React-Slick :** `for create slider` 
-- **React-Toastify :** `for showing small small toast`
-- **React-Modal :** `for creating menu bar`
+- **React-hot-toast :** `for showing small small toast`
 - **React-Redux :** `for use redux with react`
 - **Redux Toolkit :** `for managing state in global app`
 - **Chart.js :** `for showing chart for admin`
